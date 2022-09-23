@@ -25,23 +25,25 @@ class TicTacToe:
         self.play2Win = False
         self.optionsChosen = []
         self.aTie = ''
+        self.gameState = True
     
     def main(self):
-        print('Welcome to the Tic-Tac-Toe Challenge Ultimate Game')
-        print("Select One of the options below:")
-        print('1 - Start Game')
-        print('2 - Exit')
-        option = input("\n")
-         
-        if(option=='1'):
-             self.startGame()
-             return self.main()
-         
-        elif(option=='2'):
-            return
-        else:
-            print('Invalid Option. Please Try Again')
-            self.main()
+        while(self.gameState):
+            print('Welcome to the Tic-Tac-Toe Challenge Ultimate Game')
+            print("Select One of the options below:")
+            print('1 - Start Game')
+            print('2 - Exit')
+            option = input("\n")
+            
+            if(option=='1'):
+                self.startGame()
+                return self.main()
+            
+            elif(option=='2'):
+                self.gameState = False
+            else:
+                print('Invalid Option. Please Try Again')
+                self.main()
         
     def subMenu(self):
         print("Select One of the options below:")
@@ -99,13 +101,13 @@ class TicTacToe:
       
         print("Player 1 Turn")
         self.drawnGame()
-        print(self.playerOneName + " It's your turn")
         print('Please select One of the available positions')
         self.playMove('X', self.playerOneName)
+        self.cleanScreen()
+        self.drawnGame()
         self.play1Win = self.ifWins('X')
         if(self.play1Win==True):
-            self.cleanScreen()
-            self.drawnGame()
+            
             print("Congratulations " + self.playerOneName + ".You Won this battle")
             return self.subMenu()
         
@@ -116,10 +118,10 @@ class TicTacToe:
         print(self.playerTwoName+ " It's your turn")
         print('Please select One of the available positions')
         self.playMove('O', self.playerOneName)
+        self.cleanScreen()
+        self.drawnGame()
         self.play2Win = self.ifWins('O')
         if(self.play2Win==True):
-            self.cleanScreen()
-            self.drawnGame()
             print("Congratulations " + self.playerTwoName + ".You Won this battle")
             return self.subMenu()
         
@@ -172,11 +174,14 @@ class TicTacToe:
             print('Invalid Option.' + PlayerName + ' Please select one of the numbers of available positions')
             return self.playMove(play, PlayerName)
     
+    
+
+    
     def ifWins(self, sym):
         if(self.onePos==sym and self.twoPos==sym and self.threePos==sym):
             return True
         elif(self.onePos==sym and self.forPos==sym and self.sevenPos==sym):
-            return True
+            return 
         elif(self.sevenPos==sym and self.eightPos==sym and self.ninePos==sym):
             playerWin = True
         elif(self.threePos==sym and self.sixPos==sym and self.ninePos==sym):
@@ -215,7 +220,4 @@ class TicTacToe:
         self.play2Win = False
         self.optionsChosen = []
         self.aTie = ''
-    
-newGame = TicTacToe()
-newGame.startGame()
-
+        self.gameState = True
