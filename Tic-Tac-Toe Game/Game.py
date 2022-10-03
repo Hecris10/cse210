@@ -25,23 +25,25 @@ class TicTacToe:
         self.play2Win = False
         self.optionsChosen = []
         self.aTie = ''
+        self.gameState = True
     
     def main(self):
-        print('Welcome to the Tic-Tac-Toe Challenge Ultimate Game')
-        print("Select One of the options below:")
-        print('1 - Start Game')
-        print('2 - Exit')
-        option = input("\n")
-         
-        if(option=='1'):
-             self.startGame()
-             return self.main()
-         
-        elif(option=='2'):
-            return
-        else:
-            print('Invalid Option. Please Try Again')
-            self.main()
+        while(self.gameState):
+            print('Welcome to the Tic-Tac-Toe Challenge Ultimate Game')
+            print("Select One of the options below:")
+            print('1 - Start Game')
+            print('2 - Exit')
+            option = input("\n")
+            
+            if(option=='1'):
+                self.startGame()
+                return self.main()
+            
+            elif(option=='2'):
+                self.gameState = False
+            else:
+                print('Invalid Option. Please Try Again')
+                self.main()
         
     def subMenu(self):
         print("Select One of the options below:")
@@ -218,3 +220,4 @@ class TicTacToe:
         self.play2Win = False
         self.optionsChosen = []
         self.aTie = ''
+        self.gameState = True
